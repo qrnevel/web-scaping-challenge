@@ -1,22 +1,21 @@
 # Import Dependecies 
-from bs4 import BeautifulSoup 
+import numpy as np
+import pandas as pd
 from splinter import Browser
-import pandas as pd 
-import requests 
+from bs4 import BeautifulSoup
+import time
+import requests
+import re
+from webdriver_manager.chrome import ChromeDriverManager
+import pprint 
 
 # Initialize browser
 def init_browser(): 
     # Replace the path with your actual path to the chromedriver
 
     #Mac Users
-    #executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    #return Browser('chrome', **executable_path, headless=False)
-
-    #Windows Users
-    # executable_path = {'executable_path': '/Users/cantu/Desktop/Mission-to-Mars'}
-    # return Browser('chrome', **executable_path, headless=False)
-    exec_path = {'executable_path': '/app/.chromedriver/bin/chromedriver'}
-    return Browser('chrome', headless=True, **exec_path)
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    browser = Browser('chrome', **executable_path, headless=False)
 
 # Create Mission to Mars global dictionary that can be imported into Mongo
 mars_info = {}
